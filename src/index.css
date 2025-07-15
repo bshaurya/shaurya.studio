@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 20 15% 8%;
+    --foreground: 35 25% 85%;
+
+    --card: 20 15% 8%;
+    --card-foreground: 35 25% 85%;
+
+    --popover: 20 15% 8%;
+    --popover-foreground: 35 25% 85%;
+
+    --primary: 28 85% 65%;
+    --primary-foreground: 20 15% 8%;
+
+    --secondary: 280 25% 35%;
+    --secondary-foreground: 35 25% 85%;
+
+    --muted: 20 10% 15%;
+    --muted-foreground: 35 15% 60%;
+
+    --accent: 270 35% 55%;
+    --accent-foreground: 35 25% 85%;
+
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 35 25% 85%;
+
+    --border: 20 15% 20%;
+    --input: 20 15% 15%;
+    --ring: 28 85% 65%;
+
+    --radius: 0.75rem;
+
+    --terminal-bg: 20 15% 5%;
+    --terminal-glass: 20 15% 8%;
+    --terminal-border: 35 25% 25%;
+    --terminal-text: 35 25% 75%;
+    --terminal-cursor: 28 85% 65%;
+    --terminal-command: 35 25% 85%;
+
+    --glass-bg: 20 15% 8%;
+    --glass-border: 35 25% 25%;
+    --glass-shadow: 20 100% 2%;
+
+    --sidebar-background: 20 15% 8%;
+    --sidebar-foreground: 35 25% 85%;
+    --sidebar-primary: 28 85% 65%;
+    --sidebar-primary-foreground: 20 15% 8%;
+    --sidebar-accent: 20 10% 15%;
+    --sidebar-accent-foreground: 35 25% 85%;
+    --sidebar-border: 20 15% 20%;
+    --sidebar-ring: 28 85% 65%;
+  }
+
+  .dark {
+    --background: 20 15% 5%;
+    --foreground: 35 25% 90%;
+
+    --card: 20 15% 8%;
+    --card-foreground: 35 25% 90%;
+
+    --popover: 20 15% 8%;
+    --popover-foreground: 35 25% 90%;
+
+    --primary: 28 85% 70%;
+    --primary-foreground: 20 15% 5%;
+
+    --secondary: 280 30% 25%;
+    --secondary-foreground: 35 25% 90%;
+
+    --muted: 20 10% 12%;
+    --muted-foreground: 35 15% 65%;
+
+    --accent: 270 40% 60%;
+    --accent-foreground: 35 25% 90%;
+
+    --destructive: 0 85% 65%;
+    --destructive-foreground: 35 25% 90%;
+
+    --border: 20 15% 15%;
+    --input: 20 15% 12%;
+    --ring: 28 85% 70%;
+
+    --terminal-bg: 20 15% 3%;
+    --terminal-glass: 20 15% 6%;
+    --terminal-border: 35 25% 20%;
+    --terminal-text: 35 25% 80%;
+    --terminal-cursor: 28 85% 70%;
+    --terminal-command: 35 25% 90%;
+
+    --glass-bg: 20 15% 6%;
+    --glass-border: 35 25% 20%;
+    --glass-shadow: 20 100% 1%;
+
+    --sidebar-background: 20 15% 5%;
+    --sidebar-foreground: 35 25% 90%;
+    --sidebar-primary: 28 85% 70%;
+    --sidebar-primary-foreground: 20 15% 5%;
+    --sidebar-accent: 20 10% 12%;
+    --sidebar-accent-foreground: 35 25% 90%;
+    --sidebar-border: 20 15% 15%;
+    --sidebar-ring: 28 85% 70%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .terminal-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--terminal-cursor) / 0.3) transparent;
+  }
+  
+  .terminal-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .terminal-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .terminal-scrollbar::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--terminal-cursor) / 0.3);
+    border-radius: 3px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .terminal-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: hsl(var(--terminal-cursor) / 0.5);
+  }
+}
