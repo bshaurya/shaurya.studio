@@ -217,7 +217,7 @@ const EnhancedTerminalContent = () => {
           <div key="whoami" className="text-sm">
             <div className="text-terminal-cursor">shaurya bisht</div>
             <div>student, dev, researcher, human</div>
-            <div>currently exploring the intersection of tech and human potential</div>
+            <div>currently exploring the intersection of tech and human flourishing</div>
           </div>
         ];
         break;
@@ -439,7 +439,7 @@ const EnhancedTerminalContent = () => {
                    className="text-terminal-cursor hover:underline mx-1">
                   tjhsst
                 </a>
-                diving deep into math and computation while figuring out how to make meaningful positive impact.
+                exploring math and computation while figuring out how to make meaningful positive impact.
               </p>
             </div>
           );
@@ -450,7 +450,7 @@ const EnhancedTerminalContent = () => {
               <ul className="list-disc list-inside space-y-1 ml-2">
                 <li>building at hackathons</li>
                 <li>playing and watching cricket</li>
-                <li>cooking and discovering new foods</li>
+                <li>cooking, eating, and discovering new foods</li>
               </ul>
             </div>
           );
@@ -495,7 +495,6 @@ const EnhancedTerminalContent = () => {
             <div key="future" className="space-y-2 text-sm animate-fade-in">
               <div className="text-terminal-cursor font-medium">things i want to do</div>
               <ul className="list-disc list-inside space-y-1 ml-2">
-                <li>grow my own garden and understand nature better</li>
                 <li>answer "how can humans sleep optimally?"</li>
                 <li>watch more sunsets and sunrises</li>
                 <li>understand what matters to people and why</li>
