@@ -43,7 +43,7 @@ const EnhancedTerminalContent = () => {
   const [pendingCommand, setPendingCommand] = useState<string | null>(null);
   const { playTypingSound } = useTypingSound();
 
-  const availableCommands = ['ls', 'cd', 'cat', 'pwd', 'clear', 'help', 'history', 'tree', 'whoami', 'date', 'echo', 'snake', 'theme', 'matrix', 'cowsay', 'figlet', 'joke', 'weather'];
+  const availableCommands = ['ls', 'cd', 'cat', 'pwd', 'clear', 'help', 'history', 'tree', 'whoami', 'date', 'echo', 'snake', 'theme', 'matrix', 'cowsay', 'figlet', 'joke', 'chat'];
 
   const fileSystem: FileSystem = {
     '~': {
@@ -62,6 +62,249 @@ const EnhancedTerminalContent = () => {
         'find_my': { type: 'file' }
       }
     }
+  };
+
+  const figletFont = {
+    'A': [
+      '  ██  ',
+      ' ████ ',
+      '██  ██',
+      '██████',
+      '██  ██',
+      '██  ██'
+    ],
+    'B': [
+      '██████',
+      '██  ██',
+      '██████',
+      '██████',
+      '██  ██',
+      '██████'
+    ],
+    'C': [
+      ' █████',
+      '██    ',
+      '██    ',
+      '██    ',
+      '██    ',
+      ' █████'
+    ],
+    'D': [
+      '██████',
+      '██  ██',
+      '██  ██',
+      '██  ██',
+      '██  ██',
+      '██████'
+    ],
+    'E': [
+      '██████',
+      '██    ',
+      '██████',
+      '██████',
+      '██    ',
+      '██████'
+    ],
+    'F': [
+      '██████',
+      '██    ',
+      '██████',
+      '██████',
+      '██    ',
+      '██    '
+    ],
+    'G': [
+      ' █████',
+      '██    ',
+      '██ ███',
+      '██  ██',
+      '██  ██',
+      ' █████'
+    ],
+    'H': [
+      '██  ██',
+      '██  ██',
+      '██████',
+      '██████',
+      '██  ██',
+      '██  ██'
+    ],
+    'I': [
+      '██████',
+      '  ██  ',
+      '  ██  ',
+      '  ██  ',
+      '  ██  ',
+      '██████'
+    ],
+    'J': [
+      '██████',
+      '    ██',
+      '    ██',
+      '    ██',
+      '██  ██',
+      ' █████'
+    ],
+    'K': [
+      '██  ██',
+      '██ ██ ',
+      '████  ',
+      '████  ',
+      '██ ██ ',
+      '██  ██'
+    ],
+    'L': [
+      '██    ',
+      '██    ',
+      '██    ',
+      '██    ',
+      '██    ',
+      '██████'
+    ],
+    'M': [
+      '██  ██',
+      '██████',
+      '██████',
+      '██  ██',
+      '██  ██',
+      '██  ██'
+    ],
+    'N': [
+      '██  ██',
+      '███ ██',
+      '██████',
+      '██ ███',
+      '██  ██',
+      '██  ██'
+    ],
+    'O': [
+      ' █████',
+      '██  ██',
+      '██  ██',
+      '██  ██',
+      '██  ██',
+      ' █████'
+    ],
+    'P': [
+      '██████',
+      '██  ██',
+      '██████',
+      '██    ',
+      '██    ',
+      '██    '
+    ],
+    'Q': [
+      ' █████',
+      '██  ██',
+      '██  ██',
+      '██ ███',
+      '██  ██',
+      ' ██████'
+    ],
+    'R': [
+      '██████',
+      '██  ██',
+      '██████',
+      '██ ██ ',
+      '██  ██',
+      '██  ██'
+    ],
+    'S': [
+      ' █████',
+      '██    ',
+      ' █████',
+      '    ██',
+      '    ██',
+      ' █████'
+    ],
+    'T': [
+      '██████',
+      '  ██  ',
+      '  ██  ',
+      '  ██  ',
+      '  ██  ',
+      '  ██  '
+    ],
+    'U': [
+      '██  ██',
+      '██  ██',
+      '██  ██',
+      '██  ██',
+      '██  ██',
+      ' █████'
+    ],
+    'V': [
+      '██  ██',
+      '██  ██',
+      '██  ██',
+      '██  ██',
+      ' ████ ',
+      '  ██  '
+    ],
+    'W': [
+      '██  ██',
+      '██  ██',
+      '██  ██',
+      '██████',
+      '██████',
+      '██  ██'
+    ],
+    'X': [
+      '██  ██',
+      ' ████ ',
+      '  ██  ',
+      '  ██  ',
+      ' ████ ',
+      '██  ██'
+    ],
+    'Y': [
+      '██  ██',
+      '██  ██',
+      ' ████ ',
+      '  ██  ',
+      '  ██  ',
+      '  ██  '
+    ],
+    'Z': [
+      '██████',
+      '    ██',
+      '   ██ ',
+      '  ██  ',
+      ' ██   ',
+      '██████'
+    ],
+    ' ': [
+      '      ',
+      '      ',
+      '      ',
+      '      ',
+      '      ',
+      '      '
+    ],
+    '!': [
+      '  ██  ',
+      '  ██  ',
+      '  ██  ',
+      '  ██  ',
+      '      ',
+      '  ██  '
+    ]
+  };
+
+  const generateFiglet = (text: string) => {
+    const upperText = text.toUpperCase();
+    const lines = ['', '', '', '', '', ''];
+    
+    for (let i = 0; i < upperText.length; i++) {
+      const char = upperText[i];
+      const charPattern = figletFont[char as keyof typeof figletFont] || figletFont[' '];
+      
+      for (let j = 0; j < 6; j++) {
+        lines[j] += charPattern[j] + (i < upperText.length - 1 ? ' ' : '');
+      }
+    }
+    
+    return lines.join('\n');
   };
 
   useEffect(() => {
@@ -181,11 +424,29 @@ const EnhancedTerminalContent = () => {
               <div>cowsay - ascii cow</div>
               <div>figlet - ascii art text</div>
               <div>joke - random joke</div>
-              <div>weather - show weather</div>
+              <div>chat - schedule a virtual coffee chat with me</div>
             </div>
           </div>
         ];
         break;
+
+      case 'chat':
+        newOutput = [
+          <div key="chat" className="space-y-2 text-sm animate-fade-in">
+            <div className="text-terminal-cursor font-medium">Let's chat!</div>
+            <p>schedule a virtual coffee chat with me:</p>
+            <a 
+              href="https://calendly.com/bishtshaurya314/coffee-chat" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="block mt-2 px-4 py-2 bg-terminal-cursor/20 text-terminal-cursor hover:bg-terminal-cursor/30 rounded transition-colors duration-200 text-center"
+            >
+              Open Calendly
+            </a>
+            <p className="text-terminal-text/60 mt-2">looking forward to speaking!</p>
+          </div>
+        ];
+        break;        
 
       case 'history':
         newOutput = [
@@ -279,16 +540,11 @@ const EnhancedTerminalContent = () => {
         break;
 
       case 'figlet':
-        const text = args.join(' ') || 'HELLO';
+        const figletText = args.length > 0 ? args.join(' ') : 'hello';
         newOutput = [
-          <div key="figlet" className="font-mono text-xs">
-            <div>██╗  ██╗███████╗██╗     ██╗      ██████╗ </div>
-            <div>██║  ██║██╔════╝██║     ██║     ██╔═══██╗</div>
-            <div>███████║█████╗  ██║     ██║     ██║   ██║</div>
-            <div>██╔══██║██╔══╝  ██║     ██║     ██║   ██║</div>
-            <div>██║  ██║███████╗███████╗███████╗╚██████╔╝</div>
-            <div>╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝ ╚═════╝ </div>
-          </div>
+          <pre key="figlet" className="font-mono text-xs whitespace-pre overflow-x-auto leading-tight">
+            {generateFiglet(figletText)}
+          </pre>
         ];
         break;
 
@@ -302,16 +558,6 @@ const EnhancedTerminalContent = () => {
         newOutput = [
           <div key="joke" className="text-sm">
             {jokes[Math.floor(Math.random() * jokes.length)]}
-          </div>
-        ];
-        break;
-
-      case 'weather':
-        newOutput = [
-          <div key="weather" className="text-sm">
-            <div className="text-terminal-cursor">Current Weather:</div>
-            <div>🌤️ Partly cloudy, 72°F</div>
-            <div>Perfect coding weather!</div>
           </div>
         ];
         break;
